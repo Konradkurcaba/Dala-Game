@@ -88,6 +88,22 @@ public class GameWindow extends Application {
 
     /**
      *
+     * @param newPiecePosition place when new piece is created
+     *
+     * This method create computer's pieces ( Black ), add them to the group and display on field
+     */
+
+    protected static void createComputerPiece(PositionOnBoard newPiecePosition)
+    {
+        Piece piece = new Piece(PieceType.BLACK,newPiecePosition.coordX,newPiecePosition.coordY);
+
+        squaresOnBoard[newPiecePosition.coordX][newPiecePosition.coordY].setPiece(piece);
+        pieceGroup.getChildren().add(piece);
+
+    }
+
+    /**
+     *
      *
      * @param event this is place where mouse was released
      * @param piece is piece which was moved
@@ -126,7 +142,7 @@ public class GameWindow extends Application {
      *  this method delete piece from field, and from display
      */
 
-    protected static void deletePiece(PositionOnBoard piecePosition)
+    public static void deletePiece(PositionOnBoard piecePosition)
     {
         Piece pieceToRemove = squaresOnBoard[piecePosition.coordX][piecePosition.coordY].getPiece();
         pieceGroup.getChildren().remove(pieceToRemove);
