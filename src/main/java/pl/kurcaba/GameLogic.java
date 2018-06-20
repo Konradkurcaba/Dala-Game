@@ -39,6 +39,7 @@ public class GameLogic implements BoardEvents {
                         gamePhase = 2;
                         GameWindow.changeGamePhase(true);
 
+
                     }
                 }
             }
@@ -53,18 +54,21 @@ public class GameLogic implements BoardEvents {
 
                 }
             }
+            if(!playerHaveToHit) {
+                playerHaveToHit = checkWhetherPlayerHaveToHit(squarePosition);
+                changeReqiuredActionLabel();
+                computerMove();
+            }
         }
         if (pieceOnSquare != null && pieceOnSquare.getPieceType() == PieceType.BLACK)
         {
             if(playerHaveToHit){
                 GameWindow.deletePiece(squarePosition);
                 playerHaveToHit = false;
+                computerMove();
             }
         }
-        if(!playerHaveToHit) {
-            playerHaveToHit = checkWhetherPlayerHaveToHit(squarePosition);
-            changeReqiuredActionLabel();
-        }
+
 
     }
 
@@ -84,6 +88,7 @@ public class GameLogic implements BoardEvents {
                 GameWindow.createPlayersPiece(newPiecePosition);
                 playerHaveToHit = checkWhetherPlayerHaveToHit(newPiecePosition);
                 changeReqiuredActionLabel();
+                if(!playerHaveToHit) computerMove();
             }
         }
     }
@@ -215,5 +220,8 @@ public class GameLogic implements BoardEvents {
         }
     }
 
+    private void computerMove()
+    {
 
+    }
 }
